@@ -3,6 +3,7 @@ import { View, Image, StyleSheet } from 'react-native';
 import colors from '../config/colors';
 
 import ListItem from '../components/ListItem';
+import AppText from '../components/AppText';
 
 const ListingDetailsScreen = () => {
   return (
@@ -14,7 +15,7 @@ const ListingDetailsScreen = () => {
         <View style={styles.userContainer}>
           <ListItem
             image={require('../assets/mosh.jpg')}
-            title="Mosh Homedani"
+            title="Mosh Hamedani"
             subTitle="5 Listings"
           />
         </View>
