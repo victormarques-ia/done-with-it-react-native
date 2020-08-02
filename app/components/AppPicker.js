@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import {
   View,
   StyleSheet,
-  TextInput,
-  Platform,
   TouchableWithoutFeedback,
   Modal,
   Button,
@@ -16,13 +14,7 @@ import Screen from './Screen';
 import defaultStyles from '../config/styles';
 import PickerItem from './PickerItem';
 
-const AppPicker = ({
-  icon,
-  items,
-  onSelectItem,
-  selectedItem,
-  placeholder,
-}) => {
+function AppPicker({ icon, items, onSelectItem, placeholder, selectedItem }) {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
@@ -37,9 +29,12 @@ const AppPicker = ({
               style={styles.icon}
             />
           )}
-          <AppText style={styles.text}>
-            {selectedItem ? selectedItem.label : placeholder}
-          </AppText>
+          {selectedItem ? (
+            <AppText style={styles.text}>{selectedItem.label}</AppText>
+          ) : (
+            <AppText style={styles.placeholder}>{placeholder}</AppText>
+          )}
+
           <MaterialCommunityIcons
             name="chevron-down"
             size={20}
@@ -47,7 +42,7 @@ const AppPicker = ({
           />
         </View>
       </TouchableWithoutFeedback>
-      <Modal visible={modalVisible} animated="slide">
+      <Modal visible={modalVisible} animationType="slide">
         <Screen>
           <Button title="Close" onPress={() => setModalVisible(false)} />
           <FlatList
@@ -67,7 +62,7 @@ const AppPicker = ({
       </Modal>
     </>
   );
-};
+}
 const styles = StyleSheet.create({
   container: {
     backgroundColor: defaultStyles.colors.light,
@@ -82,6 +77,9 @@ const styles = StyleSheet.create({
   },
   text: {
     flex: 1,
+  },
+  placeholder: {
+    color: defaultStyles.colors.medium.gray,
   },
 });
 
