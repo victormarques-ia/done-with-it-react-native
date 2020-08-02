@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
@@ -6,23 +6,23 @@ import {
   Modal,
   Button,
   FlatList,
-} from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+} from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import AppText from './AppText';
-import Screen from './Screen';
-import defaultStyles from '../config/styles';
-import PickerItem from './PickerItem';
+import Text from "./Text";
+import defaultStyles from "../config/styles";
+import PickerItem from "./PickerItem";
+import Screen from "./Screen";
 
 function AppPicker({
   icon,
   items,
-  onSelectItem,
   numberOfColumns = 1,
+  onSelectItem,
   PickerItemComponent = PickerItem,
   placeholder,
   selectedItem,
-  width = '100%',
+  width = "100%",
 }) {
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -39,9 +39,9 @@ function AppPicker({
             />
           )}
           {selectedItem ? (
-            <AppText style={styles.text}>{selectedItem.label}</AppText>
+            <Text style={styles.text}>{selectedItem.label}</Text>
           ) : (
-            <AppText style={styles.placeholder}>{placeholder}</AppText>
+            <Text style={styles.placeholder}>{placeholder}</Text>
           )}
 
           <MaterialCommunityIcons
@@ -74,11 +74,12 @@ function AppPicker({
     </>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: defaultStyles.colors.light,
     borderRadius: 25,
-    flexDirection: 'row',
+    flexDirection: "row",
     padding: 15,
     marginVertical: 10,
   },
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   placeholder: {
-    color: defaultStyles.colors.medium.gray,
+    color: defaultStyles.colors.medium,
     flex: 1,
   },
   text: {

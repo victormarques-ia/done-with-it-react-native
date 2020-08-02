@@ -1,37 +1,36 @@
-import React from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import React from "react";
+import { StyleSheet, View, FlatList } from "react-native";
 
-import Screen from '../components/Screen';
-import ListItem from '../components/ListItem';
-import colors from '../config/colors';
-import Icon from '../components/Icon';
-import ListItemSeparator from '../components/ListItemSeparator';
+import { ListItem, ListItemSeparator } from "../components/lists";
+import colors from "../config/colors";
+import Icon from "../components/Icon";
+import Screen from "../components/Screen";
 
 const menuItems = [
   {
-    title: 'My Listings',
+    title: "My Listings",
     icon: {
-      name: 'format-list-bulleted',
+      name: "format-list-bulleted",
       backgroundColor: colors.primary,
     },
   },
   {
-    title: 'My Messages',
+    title: "My Messages",
     icon: {
-      name: 'email',
+      name: "email",
       backgroundColor: colors.secondary,
     },
   },
 ];
 
-const AccountScreen = () => {
+function AccountScreen(props) {
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
         <ListItem
           title="Mosh Hamedani"
           subTitle="programmingwithmosh@gmail.com"
-          image={require('../assets/mosh.jpg')}
+          image={require("../assets/mosh.jpg")}
         />
       </View>
       <View style={styles.container}>
@@ -58,7 +57,7 @@ const AccountScreen = () => {
       />
     </Screen>
   );
-};
+}
 
 const styles = StyleSheet.create({
   screen: {
