@@ -1,24 +1,25 @@
-import React from "react";
-import { StyleSheet, View, FlatList } from "react-native";
+import React, { useContext } from 'react';
+import { StyleSheet, View, FlatList } from 'react-native';
 
-import { ListItem, ListItemSeparator } from "../components/lists";
-import colors from "../config/colors";
-import Icon from "../components/Icon";
-import routes from "../navigation/routes";
-import Screen from "../components/Screen";
+import { ListItem, ListItemSeparator } from '../components/lists';
+import colors from '../config/colors';
+import Icon from '../components/Icon';
+import routes from '../navigation/routes';
+import Screen from '../components/Screen';
+import AuthContext from '../auth/context';
 
 const menuItems = [
   {
-    title: "My Listings",
+    title: 'My Listings',
     icon: {
-      name: "format-list-bulleted",
+      name: 'format-list-bulleted',
       backgroundColor: colors.primary,
     },
   },
   {
-    title: "My Messages",
+    title: 'My Messages',
     icon: {
-      name: "email",
+      name: 'email',
       backgroundColor: colors.secondary,
     },
     targetScreen: routes.MESSAGES,
@@ -26,13 +27,15 @@ const menuItems = [
 ];
 
 function AccountScreen({ navigation }) {
+  const { user, setUser } = useContext(AuthContext);
+
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
         <ListItem
-          title="Mosh Hamedani"
-          subTitle="programmingwithmosh@gmail.com"
-          image={require("../assets/mosh.jpg")}
+          title={user.name}
+          subTitle={user.email}
+          image={require('../assets/mosh.jpg')}
         />
       </View>
       <View style={styles.container}>
@@ -43,10 +46,12 @@ function AccountScreen({ navigation }) {
           renderItem={({ item }) => (
             <ListItem
               title={item.title}
-              IconComponent={<Icon
-                name={item.icon.name}
-                backgroundColor={item.icon.backgroundColor}
-              />}
+              IconComponent={
+                <Icon
+                  name={item.icon.name}
+                  backgroundColor={item.icon.backgroundColor}
+                />
+              }
               onPress={() => navigation.navigate(item.targetScreen)}
             />
           )}
@@ -55,6 +60,7 @@ function AccountScreen({ navigation }) {
       <ListItem
         title="Log Out"
         IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
+        onPress={() => setUser(null)}
       />
     </Screen>
   );
